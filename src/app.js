@@ -125,7 +125,7 @@ var Base64 = {
   var URL = 'https://api-eu.clusterpoint.com/741/barracuda/911/.json';  
     // Download data
     ajax({url: URL,
-          method: 'post',
+          method: 'put',
           type: 'json',
           data: {"funcId":"alarm",
                  "timestamp":new Date().getTime()
@@ -149,7 +149,7 @@ var Base64 = {
         //splashCard.hide();
       },
        function(error) {
-         console.log('Ajax failed: ' + error);
+         console.log('Ajax failed: ' + JSON.stringify(error));
        }
     );
 
@@ -173,20 +173,35 @@ var Base64 = {
     // menu.show();
   });
 
-  splashCard.on('click', 'select', function(e) {
-    var wind = new UI.Window({
-      fullscreen: true,
-    });
-    var textfield = new UI.Text({
-      position: new Vector2(0, 65),
-      size: new Vector2(144, 30),
-      font: 'gothic-24-bold',
-      text: 'RINGING!!!',
-      textAlign: 'center'
-    });
-    wind.add(textfield);
-    wind.show();
-  });
+    splashCard.on('click', 'select', function(e) {
+    var URL = 'https://api-eu.clusterpoint.com/741/barracuda/911/.json';  
+      // Download data
+    ajax({url: URL,
+          method: 'put  ',
+          type: 'json',
+          data: {"funcId":"alarm",
+                 "timestamp":new Date().getTime()
+                },
+          headers:{
+            Authorization: "Basic " + Base64.encode('root@javabean.ru' + ":" + '24801x'),
+          }
+    },
+        function(json) {
+          var wind = new UI.Window({fullscreen: true});
+          var textfield = new UI.Text({
+            position: new Vector2(0, 65),
+            size: new Vector2(144, 30),
+            font: 'gothic-24-bold',
+            text: 'RINGING!!!',
+            textAlign: 'center'
+          });
+          wind.add(textfield);
+          wind.show();
+        },
+        function(error) {
+         console.log('Ajax failed: ' + error);
+       }
+    );});
 
   // main.on('click', 'down', function(e) {
   //   var card = new UI.Card();
