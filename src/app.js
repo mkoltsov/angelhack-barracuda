@@ -192,7 +192,7 @@ var Base64 = {
             position: new Vector2(0, 65),
             size: new Vector2(144, 30),
             font: 'gothic-24-bold',
-            text: 'RINGING!!!',
+            text: 'CALLING EMERGENCY!,
             textAlign: 'center'
           });
           wind.add(textfield);
@@ -203,10 +203,10 @@ var Base64 = {
        }
     );});
 
-  // main.on('click', 'down', function(e) {
-  //   var card = new UI.Card();
-  //   card.title('A Card');
-  //   card.subtitle('Is a Window');
-  //   card.body('The simplest window type in Pebble.js.');
-  //   card.show();
-  // });
+  main.on('click', 'down', function(e) {
+    var card = new UI.Card();
+    card.title('About');
+    card.subtitle('AngelHack rocks');
+    card.body('We did this app through a course of this weekend');
+    card.show();
+  });
