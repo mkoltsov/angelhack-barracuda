@@ -128,7 +128,7 @@ var Base64 = {
           method: 'post',
           type: 'json',
           data: {"funcId":"alarm",
-                 "timestamp":new Date.getTime()
+                 "timestamp":new Date().getTime()
                 },
           headers:{
             Authorization: "Basic " + Base64.encode('root@javabean.ru' + ":" + '24801x'),
