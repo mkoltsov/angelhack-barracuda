@@ -192,7 +192,7 @@ var Base64 = {
             position: new Vector2(0, 65),
             size: new Vector2(144, 30),
             font: 'gothic-24-bold',
-            text: 'CALLING EMERGENCY!,
+            text: 'CALLING EMERGENCY!',
             textAlign: 'center'
           });
           wind.add(textfield);
@@ -203,7 +203,7 @@ var Base64 = {
        }
     );});
 
-  main.on('click', 'down', function(e) {
+  splashCard.on('click', 'down', function(e) {
     var card = new UI.Card();
     card.title('About');
     card.subtitle('AngelHack rocks');
