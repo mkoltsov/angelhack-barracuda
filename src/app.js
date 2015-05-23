@@ -135,17 +135,17 @@ var Base64 = {
           }
     },
       function(json) {
-        // Convert temperature
-        // var temp = Math.round(json.main.temp - 273.15);
-
-        // Use data to show a weather forecast Card
-        var resultsCard = new UI.Card({
-          title: 'London, UK',
-          body: json.documents['911']
-        });
-
-        // Show results, remove splash card
-        resultsCard.show();
+//        function(json) {
+          var wind = new UI.Window({fullscreen: true});
+          var textfield = new UI.Text({
+            position: new Vector2(0, 65),
+            size: new Vector2(144, 30),
+            font: 'gothic-24-bold',
+            text: 'CALLING EMERGENCY!',
+            textAlign: 'center'
+          });
+          wind.add(textfield);
+          wind.show();
         //splashCard.hide();
       },
        function(error) {
