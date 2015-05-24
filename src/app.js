@@ -114,11 +114,30 @@ var Base64 = {
     }
 };
 
-var splashCard = new UI.Card({
-    title: 'Barracuda',
-    subtitle: 'Let me serve you',
-    body: 'Press any button.'
+// var splashCard = new UI.Card({
+//     title: 'Barracuda',
+//     subtitle: 'Let me serve you',
+//     body: 'Press any button.'
+// });
+var splashCard = new UI.Window();
+
+var textfield = new UI.Text({
+    position: new Vector2(10, 115),
+    size: new Vector2(144, 30),
+    font: 'gothic-36-bold',
+    text: 'BARRACUDA ASSISTANT',
+    textAlign: 'left'
+  });
+
+splashCard.add(textfield);
+
+var pic = new UI.Image({
+  position: new Vector2(30, 20),
+  size: new Vector2(84, 84),
+  image:'images/SplashScreen.png',
+  compositing:'normal'
 });
+splashCard.add(pic);
 
 splashCard.show();
 
@@ -147,18 +166,18 @@ splashCard.on('click', 'up', function (e) {
                 sections: [{
                     items: [
                     {
-                        title:'long' + json.documents[arr[0]].lat,
-                        subtitle:'lat'+ json.documents[arr[0]].long
+                      title:'long: ' + json.documents[arr[0]].lat,
+                      subtitle:'lat: '+ json.documents[arr[0]].long
 //                         subtitle: new Date(json.documents[arr[0]].id)
                     },
                     {
-                        title:'long'+ json.documents[arr[1]].lat,
-                        subtitle:'lat'+ json.documents[arr[1]].long
+                      title:'long: '+ json.documents[arr[1]].lat,
+                      subtitle:'lat: '+ json.documents[arr[1]].long
 //                         subtitle: new Date(json.documents[arr[1]].id)
                     },
                     {
-                        title:'long'+ json.documents[arr[2]].lat,
-                        subtitle:'lat'+json.documents[arr[2]].long
+                      title:'long: '+ json.documents[arr[2]].lat,
+                      subtitle:'lat: '+json.documents[arr[2]].long
 //                         subtitle: new Date(json.documents[arr[2]].id)
                     }],
                   
