@@ -7,6 +7,7 @@
 var UI = require('ui');
 var Vector2 = require('vector2');
 var ajax = require('ajax');
+var Vibe = require('ui/vibe');
 
 var Base64 = {
     // private property
@@ -122,7 +123,7 @@ var splashCard = new UI.Card({
 splashCard.show();
 
 splashCard.on('click', 'up', function (e) {
-    var URL = 'https://api-eu.clusterpoint.com/741/barracuda/911/.json';
+    var URL = 'https://api-eu.clusterpoint.com/741/barracuda/_search.json';
     // Download data
     ajax({
             url: URL,
@@ -130,15 +131,15 @@ splashCard.on('click', 'up', function (e) {
             type: 'json',
             data: {
                 "query": "~911",
-                "docs": 2
+                "docs": 3
             },
             headers: {
                 Authorization: "Basic " + Base64.encode('root@javabean.ru' + ":" + '24801x'),
             }
         },
         function (json) {
-            var arr = []
-            for (key in json.documents) {
+            var arr = [];
+            for (var key in json.documents) {
                 arr.push(key);
             }
 
@@ -146,13 +147,21 @@ splashCard.on('click', 'up', function (e) {
                 sections: [{
                     items: [
                     {
-                        title: json.documents[arr[0]].id,
-                        subtitle: 'Can do Menus'
+                        title:'long' + json.documents[arr[0]].lat,
+                        subtitle:'lat'+ json.documents[arr[0]].long
+//                         subtitle: new Date(json.documents[arr[0]].id)
                     },
                     {
-                        title: json.documents[arr[1]].id,
-                        subtitle: 'Subtitle Text'
-                    }]
+                        title:'long'+ json.documents[arr[1]].lat,
+                        subtitle:'lat'+ json.documents[arr[1]].long
+//                         subtitle: new Date(json.documents[arr[1]].id)
+                    },
+                    {
+                        title:'long'+ json.documents[arr[2]].lat,
+                        subtitle:'lat'+json.documents[arr[2]].long
+//                         subtitle: new Date(json.documents[arr[2]].id)
+                    }],
+                  
             }]
             });
             menu.on('select', function (e) {
@@ -174,7 +183,7 @@ splashCard.on('click', 'select', function (e) {
     // Download data
     ajax({
             url: URL,
-            method: 'put  ',
+            method: 'put',
             type: 'json',
             data: {
                 "funcId": "alarm",
@@ -190,10 +199,11 @@ splashCard.on('click', 'select', function (e) {
                 position: new Vector2(0, 65),
                 size: new Vector2(144, 30),
                 font: 'gothic-24-bold',
-                text: 'CALLING EMERGENCY!',
+                text: 'Scanning...',
                 textAlign: 'center'
             });
             wind.add(textfield);
+            Vibe.vibrate('short');
             wind.show();
         },
         function (error) {
